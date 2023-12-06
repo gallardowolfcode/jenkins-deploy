@@ -30,7 +30,7 @@ pipeline {
             steps {
                 // Construir la imagen Docker con el HTML
                 // Puedes utilizar un Dockerfile para esto
-                docker build -t jenkinsdeploy .
+                docker build -t jenkins-deploy .
             }
         }
 
