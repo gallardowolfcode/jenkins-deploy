@@ -4,5 +4,5 @@ services:
   mi_web:
     image: nautyluz/jenkinsdeploy:latest
     ports:
-      - "8080:80"
+      - "8081:81"
     container_name: finaldev
