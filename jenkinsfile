@@ -1,0 +1,51 @@
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Git Pull') {
+//             steps {
+//                 // Comando para hacer un git pull desde el repositorio
+//                 // git pull
+//             }
+//         }
+//         stage('Build') {
+//             steps {
+//                 // Comando para compilar tu aplicación
+//                 // mvn clean package (o similar, según el lenguaje)
+//             }
+//         }
+//         stage('Unit Tests') {
+//             steps {
+//                 // Comando para ejecutar pruebas unitarias
+//                 // mvn test (o similar, según el lenguaje)
+//             }
+//             post {
+//                 success {
+//                     echo 'Las pruebas pasaron, continuando...'
+//                 }
+//                 failure {
+//                     echo 'Las pruebas fallaron, rechazando el código...'
+//                     currentBuild.result = 'FAILURE'
+//                     error('Las pruebas unitarias han fallado.')
+//                 }
+//             }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 // Comando para crear y subir el contenedor a Docker Hub
+//                 // docker build -t nombre_contenedor .
+//                 // docker push usuario/nombre_contenedor
+//             }
+//         }
+//     }
+// }
+
+pipeline {
+    agent any
+    stages {
+        stage('ejemplo') {
+            steps {
+                echo 'hello world'
+            }
+        }
+    }
+}
