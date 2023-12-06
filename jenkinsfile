@@ -1,51 +1,43 @@
-// pipeline {
-//     agent any
-//     stages {
-//         stage('Git Pull') {
-//             steps {
-//                 // Comando para hacer un git pull desde el repositorio
-//                 // git pull
-//             }
-//         }
-//         stage('Build') {
-//             steps {
-//                 // Comando para compilar tu aplicación
-//                 // mvn clean package (o similar, según el lenguaje)
-//             }
-//         }
-//         stage('Unit Tests') {
-//             steps {
-//                 // Comando para ejecutar pruebas unitarias
-//                 // mvn test (o similar, según el lenguaje)
-//             }
-//             post {
-//                 success {
-//                     echo 'Las pruebas pasaron, continuando...'
-//                 }
-//                 failure {
-//                     echo 'Las pruebas fallaron, rechazando el código...'
-//                     currentBuild.result = 'FAILURE'
-//                     error('Las pruebas unitarias han fallado.')
-//                 }
-//             }
-//         }
-//         stage('Deploy') {
-//             steps {
-//                 // Comando para crear y subir el contenedor a Docker Hub
-//                 // docker build -t nombre_contenedor .
-//                 // docker push usuario/nombre_contenedor
-//             }
-//         }
-//     }
-// }
-
 pipeline {
-    dockerfile true
+    agent any
+
     stages {
-        stage('ejemplo') {
+        stage('Git Pull') {
             steps {
-                echo 'hello world2'
-                sh 'echo myCustomEnvVar = $myCustomEnvVar'
+                // Aquí se realiza el git pull desde el repositorio
+                // git pull
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                // Aquí puedes ejecutar pruebas si tienes
+                // En caso contrario, pasa directamente a la siguiente etapa
+            }
+            post {
+                success {
+                    echo 'Las pruebas pasaron, continuando...'
+                }
+                failure {
+                    echo 'Las pruebas fallaron, rechazando el código...'
+                    currentBuild.result = 'FAILURE'
+                    error('Las pruebas han fallado.')
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                // Construir la imagen Docker con el HTML
+                // Puedes utilizar un Dockerfile para esto
+                // Ejemplo: docker build -t nombre_imagen .
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                // Subir la imagen Docker al Docker Hub
+                // Ejemplo: docker push usuario/nombre_imagen
             }
         }
     }

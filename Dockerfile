@@ -1,7 +1,7 @@
-# Base image
-FROM ubuntu
+# syntax=docker/dockerfile:1
 
-# Di image configuration
-RUN /bin/bash -c 'echo This would generally be apt-get or other system configuration'
-ENV myCustomEvnvVar='This sample.'\
-    otherEnvVar="this is also sample"
+FROM nginx
+WORKDIR /jenkins-deploy/index.html
+COPY index.html /usr/share/nginx/html
+EXPOSE 8010
+CMD ["nginx", "-g", "daemon off;"]
