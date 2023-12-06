@@ -30,14 +30,14 @@ pipeline {
             steps {
                 // Construir la imagen Docker con el HTML
                 // Puedes utilizar un Dockerfile para esto
-                // Ejemplo: docker build -t nombre_imagen .
+                docker build -t jenkinsdeploy .
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
                 // Subir la imagen Docker al Docker Hub
-                // Ejemplo: docker push usuario/nombre_imagen
+                docker push nautyluz/jenkinsdeploy
             }
         }
     }
